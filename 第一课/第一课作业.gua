@@ -105,8 +105,9 @@ const square = function(x, y, length) {
     }
 
 }
-square(0,0,50)
 
+// square(0,0,50)
+// square(-50,-50,150)
 
 
 // 2
@@ -118,8 +119,8 @@ square(0,0,50)
 // rect(x, y, w, h)
 //
 // 根据例子 1 的程序修改，步骤如下
-// 1. 考虑矩形只重复两次(一次会画出宽和高), 所以只需要循环 2 次
-
+// // 1. 考虑矩形只重复两次(一次会画出宽和高), 所以只需要循环 2 次
+//
 const rect = function(x, y, w, h) {
     jump(x, y)
     setHeading(0)
@@ -132,8 +133,8 @@ const rect = function(x, y, w, h) {
         i = i + 1
     }
 }
-
-rect(0,0,100,50)
+//
+// rect(0,0,100,50)
 
 
 
@@ -150,9 +151,17 @@ rect(0,0,100,50)
 // 3. 在每次循环中画正方形, 调用作业 1 中实现的函数
 
 const square5 = function() {
+        var i = 0
+        while (i < 5) {
+            var x = i * 30
+            var y = 0
+            square(x,y,30)
 
+            i = i + 1
+        }
 }
 
+// square5()
 
 
 // 4
@@ -167,8 +176,20 @@ const square5 = function() {
 // 因此在计算出每个左上角的坐标之后，参考作业 3 的提示即可完成
 
 const square5_10 = function() {
+    var i = 0
+    var n = 5
+    var length = 30
+    var space = 10
+    while (i < n) {
+        var x = i * (length+space)
+        var y = 0
+        square(x,y,length)
 
+        i = i + 1
+    }
 }
+
+// square5_10()
 
 
 
@@ -187,8 +208,21 @@ const square5_10 = function() {
 // 同时两个正方形的间距从 10 换成了 space
 
 const square_line = function(x, y, n, space, len) {
+    var i = 0
+    // var n = 5
+    var length = len
+    // var space = 10
+    while (i < n) {
+        var x1 = x +i * (length+space)
+        var y1 = y
+        square(x1,y1,length)
+
+        i = i + 1
+    }
 
 }
+// square_line(0,0,5,10,50)
+
 
 
 
@@ -209,8 +243,20 @@ const square_line = function(x, y, n, space, len) {
 
 
 const square_square = function(x, y, space, len, n, m) {
+    var length = len
+    var i = 0
+    // var n = 5
+
+    // var space = 10
+    while (i < m) {
+        var x1 = x
+        var y1 = y + i * (length+space)
+        square_line(x1, y1, n, space, len)
+        i = i + 1
+    }
 
 }
+// square_square(0,0,10,20,5,3)
 
 
 
@@ -229,8 +275,21 @@ const square_square = function(x, y, space, len, n, m) {
 
 
 const rect_line = function(x, y, w, h, n, space) {
+    var i = 0
+    // var n = 5
+    var wide = w
+    var heihgt = h
+    // var space = 10
+    while (i < n) {
+        var x1 = i * (wide+space)
+        var y1 = y
+        rect(x1,y1,wide,heihgt)
+
+        i = i + 1
+    }
 
 }
+// rect_line(0, 0, 30, 10, 5, 20)
 
 
 
@@ -250,8 +309,21 @@ const rect_line = function(x, y, w, h, n, space) {
 
 
 const rect_square = function(x, y, space, w, h, n, m) {
+    var i = 0
+    // var n = 5
+    var wide = w
+    var heihgt = h
+    // var space = 10
+    while (i < m) {
+        var x1 = x
+        var y1 = i * (heihgt+space)
+        rect_line(x1, y1, wide, heihgt, n, space)
+        i = i + 1
+    }
 
 }
+
+// rect_square(0, 0, 30, 30,10, 4,3)
 
 
 
@@ -267,6 +339,27 @@ const rect_square = function(x, y, space, w, h, n, m) {
 // 正多边形和正方形的区别是前者循环 n 次，后者循环 4 次
 // 其他都可以直接参考作业 1
 
-const polygon = function(x, y, n, length) {
+// var x = bianchang
+// var n = bianshu
+// var 内角 = (n - 2) * 180 / n
+// var degree = 180 - 内角
+// var i = 0
+// while(i < n) {
+//     forward(x)
+//     right(degree)
+//     // 特别注意，循环结束前一定要改变 i 的值
+//     // 否则循环永远不会结束的
+//     i = i + 1
+// }
 
+const polygon = function(x, y, n, length) {
+    var i = 0
+    var nei = (n - 2)*180
+    var degree = 180 - nei/n
+    while (i < n) {
+        forward(length)
+        right(degree)
+        i = i + 1
+    }
 }
+polygon(0,0,8,30)
